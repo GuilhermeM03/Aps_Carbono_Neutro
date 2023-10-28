@@ -1,0 +1,55 @@
+emissão={'Cimento': [50, 48.44],
+					'Cal': [20, 15.71],
+					'Aço ': [1,1.45],
+					'Ferro': [1, 1.45],
+					'Tijolo': [1, 0.95],
+					'Telha': [1, 0.95],
+					'Areia': [1, 22.62],
+					'Brita': [1, 22.62]
+}
+emis={'cimento': [50, 48.44],
+					'cal': [20, 15.71],
+					'aço': [1,1.45],
+					'ferro': [1, 1.45],
+					'tijolo': [1, 0.95],
+					'telha': [1, 0.95],
+					'areia': [1, 22.62],
+					'brita': [1, 22.62]
+}
+print('Média de CO2 emitido por Material: \n')
+for chave, dados in emissão.items():
+	print('Material: ', chave)
+	print('Quantidade: ', dados[0])
+	print('Emitido: ', dados[1])
+	print('\n')
+total=0
+utilizado=[ ]
+while True:
+	material=input('Digite os materiais utilizados na construção: \n')
+	if material=='areia' or material=='Areia':
+		quantidade=int(input(f'Digite a quantidade {material} (m^3) de  utilizado na construção: \n'))
+	quantidade=int(input(f'Digite a quantidade {material} (un.) de  utilizado na construção: \n'))
+	utilizado.append([material, quantidade])
+	sair=(input('Digite 0 para sair ou digite outra tecla para continuar: \n'))
+	if sair=='0':
+		break
+print('\n')
+if material in emissão:
+	for operação in utilizado:
+		material, quantidade = operação
+		emi=emissão[material][1]
+		emitido= quantidade*emi
+		print(f"{material:12s} : {emi:6.2f} = {emitido:6.2f}\n")
+		total+=emitido
+elif material in emis:
+	for operação in utilizado:
+		material, metro = operação
+		emi=emis[material][1]
+		emitido= quantidade*emi
+		print(f"{material:12s} : {emi:6.2f} = {emitido:6.2f}\n")
+		total+=emitido
+else:
+	print('Não foi digitado um material válido\n')
+print(f'O total emitido foi : {total:6.2f} CO2\n')
+tone=total/1000
+print(f'Foi emitido: {total:6.2f} toneladas')

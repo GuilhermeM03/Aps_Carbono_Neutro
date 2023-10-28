@@ -1,0 +1,30 @@
+emissão={'Cimento': [67],
+					'Cal': [18],
+					'Aço': [5],
+					'Tijolo': [127],
+					'Telha': [127],
+					'Areia': [8],
+					'Brita': [8]
+}
+print('Média de CO2 emitido por Material: \n')
+for chave, dados in emissão.items():
+	print('Material: ', chave)
+	print('Média: ', dados[0])
+	print('\n')
+total=0
+utilizado=[ ]
+metro=float(input('Digite quantos metros quadrados a construção vai possuir: \n'))
+while True:
+	material=input('Digite os materiais utilizados na construção: \n')
+	utilizado.append([material, metro])
+	sair=(input('Digite 0 para sair ou outra coisa: \n'))
+	if sair=='0':
+		break
+print('\n')
+for operação in utilizado:
+	material, metro = operação
+	emi=emissão[material][0]
+	emitido= metro*emi
+	print(f"{material:12s} : {emi:6.2f} = {emitido:6.2f}\n")
+	total+=emitido
+print(f'Foi emitido em média total : {total:6.2f} CO2 por metro quadrado\n')
